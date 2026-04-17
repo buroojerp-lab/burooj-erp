@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.production
+.env.local
+backend/uploads/
+backups/
+*.log
+.DS_Store
+frontend/build/
+electron/dist/
+dist/

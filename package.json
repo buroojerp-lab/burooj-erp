@@ -1,0 +1,83 @@
+{
+  "name": "burooj-heights-erp",
+  "version": "3.0.0",
+  "description": "Burooj Heights Real Estate ERP",
+  "main": "electron/main.js",
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "electron:dev": "concurrently \"cross-env SERVE_STATIC=true PORT=5001 node backend/src/server.js\" \"wait-on http://localhost:5001/health && electron .\"",
+    "dist": "npm run build && electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "com.buroojheights.erp",
+    "productName": "Burooj Heights ERP",
+    "copyright": "Copyright © 2024 Burooj Heights",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "electron/assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Burooj Heights ERP",
+      "createStartMenuShortcut": true,
+      "installerIcon": "electron/assets/icon.ico",
+      "uninstallerIcon": "electron/assets/icon.ico",
+      "installerHeaderIcon": "electron/assets/icon.ico",
+      "license": "electron/assets/license.txt"
+    },
+    "files": [
+      "electron/**/*",
+      "node_modules/**/*",
+      "!node_modules/**/test{,s}/**",
+      "!node_modules/**/*.{md,map}",
+      "!node_modules/**/LICENSE",
+      "!node_modules/**/.travis.yml"
+    ],
+    "extraResources": [
+      {
+        "from": "frontend/build",
+        "to": "frontend/build",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "backend",
+        "to": "backend",
+        "filter": [
+          "**/*",
+          "!node_modules/.cache/**",
+          "!*.log",
+          "!.env"
+        ]
+      }
+    ],
+    "publish": {
+      "provider": "github",
+      "owner": "buroojheights",
+      "repo": "erp-releases"
+    }
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^28.1.0",
+    "electron-builder": "^24.9.1",
+    "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "electron-is-dev": "^2.0.0",
+    "electron-log": "^5.0.3",
+    "electron-updater": "^6.1.7",
+    "embedded-postgres": "^17.9.0-beta.16"
+  }
+}

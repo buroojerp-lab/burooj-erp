@@ -1,0 +1,12 @@
+Place your app icon here as "icon.ico"
+---------------------------------------
+Requirements:
+  - File name : icon.ico
+  - Size      : 256x256 pixels minimum (multi-size .ico preferred)
+  - Format    : Windows ICO
+
+To convert a PNG to ICO you can use:
+  https://convertico.com
+  or the "png-to-ico" npm package
+
+This file (ICON_REQUIRED.txt) can be deleted once icon.ico is in place.

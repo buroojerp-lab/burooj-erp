@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Burooj Heights ERP</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      height: 340px;
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      overflow: hidden;
+      user-select: none;
+      -webkit-app-region: drag;
+    }
+
+    .logo-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 30px rgba(249, 115, 22, 0.4);
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #f8fafc;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-top: 6px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #f97316, #fb923c);
+      border-radius: 2px;
+      margin: 20px 0;
+    }
+
+    .status {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 16px;
+    }
+
+    .progress-bar {
+      width: 240px;
+      height: 3px;
+      background: #1e293b;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f97316, #fb923c);
+      border-radius: 3px;
+      animation: loading 2.5s ease-in-out infinite;
+    }
+
+    @keyframes loading {
+      0%   { width: 0%;   margin-left: 0; }
+      50%  { width: 60%;  margin-left: 20%; }
+      100% { width: 0%;   margin-left: 100%; }
+    }
+
+    .version {
+      position: absolute;
+      bottom: 16px;
+      font-size: 11px;
+      color: #334155;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-ring">🏗</div>
+  <h1>Burooj Heights ERP</h1>
+  <p class="subtitle">Real Estate Management System</p>
+  <div class="divider"></div>
+  <p class="status">Starting services, please wait…</p>
+  <div class="progress-bar">
+    <div class="progress-fill"></div>
+  </div>
+  <p class="version">v1.0.0</p>
+</body>
+</html>
