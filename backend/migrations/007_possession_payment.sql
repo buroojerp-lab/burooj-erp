@@ -6,7 +6,13 @@
 --   30% Down | 10% Confirmation | ~27% Monthly×18 | 11% Balloon | 22% Possession
 -- ============================================================
 
--- 1. Add possession_pct to payment_plans
+-- 1. Add missing columns to payment_plans
+ALTER TABLE payment_plans
+  ADD COLUMN IF NOT EXISTS confirmation_pct DECIMAL(5,2) DEFAULT 0;
+
+ALTER TABLE payment_plans
+  ADD COLUMN IF NOT EXISTS balloon_pct DECIMAL(5,2) DEFAULT 0;
+
 ALTER TABLE payment_plans
   ADD COLUMN IF NOT EXISTS possession_pct DECIMAL(5,2) DEFAULT 0;
 
