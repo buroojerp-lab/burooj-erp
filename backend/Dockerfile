@@ -3,11 +3,10 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Install dependencies for native modules
-RUN apk add --no-cache python3 make g++ cairo-dev jpeg-dev pango-dev musl-dev
+RUN apk add --no-cache python3 make g++
 
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci --only=production --ignore-scripts
 
 COPY src ./src
 COPY migrations ./migrations
@@ -18,12 +17,8 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-RUN apk add --no-cache \
-    cairo-dev jpeg-dev pango-dev \
-    chromium nss freetype harfbuzz ca-certificates ttf-freefont
-
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/src ./src
