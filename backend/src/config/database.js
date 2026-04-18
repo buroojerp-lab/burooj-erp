@@ -5,7 +5,7 @@ const logger = require('./logger');
 const poolConfig = process.env.DATABASE_URL
   ? {
       connectionString: process.env.DATABASE_URL,
-      ssl: process.env.DATABASE_URL.includes('railway') ? { rejectUnauthorized: false } : false,
+      ssl: false,
       min: parseInt(process.env.DB_POOL_MIN || '2'),
       max: parseInt(process.env.DB_POOL_MAX || '10'),
       idleTimeoutMillis: 30000,
