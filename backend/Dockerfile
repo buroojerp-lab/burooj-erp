@@ -9,7 +9,9 @@ RUN apk add --no-cache python3 make g++ cairo-dev jpeg-dev pango-dev musl-dev
 COPY package*.json ./
 RUN npm ci --only=production
 
-COPY . .
+COPY src ./src
+COPY migrations ./migrations
+COPY package.json ./
 
 # ── Runtime ──
 FROM node:20-alpine
@@ -25,10 +27,11 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/src ./src
+COPY --from=builder /app/migrations ./migrations
 COPY --from=builder /app/package.json ./
 
 RUN mkdir -p /app/uploads/bills /app/uploads/docs
 
 EXPOSE 5000
 
-CMD ["node", "src/server.js"]
+CMD ["sh", "-c", "node src/utils/runMigrations.js && node src/server.js"]
